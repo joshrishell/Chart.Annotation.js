@@ -179,7 +179,7 @@ module.exports = function(Chart) {
 			ctx.lineWidth = view.borderWidth;
 			ctx.strokeStyle = view.borderColor;
 
-			if (view.borderSetDash) {
+			if (view.borderSetDash && ctx.setLineDash ) {
 				ctx.setLineDash(view.borderSetDash);
 			}
 			// Draw
@@ -187,7 +187,10 @@ module.exports = function(Chart) {
 			ctx.moveTo(view.x1, view.y1);
 			ctx.lineTo(view.x2, view.y2);
 			ctx.stroke();
-			ctx.setLineDash([]);
+
+			if (ctx.setLineDash) {
+				ctx.setLineDash([]);
+			}
 		}
 	});
 
